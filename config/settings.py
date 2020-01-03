@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from datetime import timedelta
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -40,6 +42,8 @@ INSTALLED_APPS = [
     'sample',
     'api',
     'rest_framework',
+    'djoser',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # django cors headersの読み込み
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -102,6 +107,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # simple_jwtの読み込み
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
+    ]
+}
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',),  # トークンをJWTに設定
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60)  # トークンの持続時間の設定
+}
+
+CORS_ORIGIN_ALLOW_ALL = True  # CORSの設定
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
