@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('api/auth/', include('djoser.urls.jwt')),  # 認証用URL(djoserがエンドポイントを用意)
 ]
