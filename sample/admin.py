@@ -1,3 +1,12 @@
 from django.contrib import admin
+from .models import MainList, SubList
 
-# Register your models here.
+
+@admin.register(MainList)
+class AdminMainList(admin.ModelAdmin):
+    pass
+
+
+@admin.register(SubList)
+class AdminSubList(admin.ModelAdmin):
+    pass
