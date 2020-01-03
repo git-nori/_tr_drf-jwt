@@ -11,4 +11,4 @@ class MainListSerializer(serializers.ModelSerializer):
 class SubListSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubList
-        fields = ('title', 'totalnum')
+        fields = ('title', 'total_num')
